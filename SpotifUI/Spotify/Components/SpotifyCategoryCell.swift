@@ -33,6 +33,7 @@ struct SpotifyCategoryCell: View {
                     }
                 }
             
+            
             if expandOnSelect && isExpansionExpanded {
                 if let expandedText = expandedText {
                     Text(expandedText)
@@ -60,6 +61,5 @@ struct SpotifyCategoryCell: View {
             SpotifyCategoryCell(isSelected: true, expandOnSelect: true, expandedText: "Expanded")
 //            SpotifyCategoryCell()
         }
-        .wrapInGlassContainer()
     }
 }

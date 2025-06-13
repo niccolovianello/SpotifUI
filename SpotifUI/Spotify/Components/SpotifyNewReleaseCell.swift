@@ -45,9 +45,7 @@ struct SpotifyNewReleaseCell: View {
                 }
             }
             .padding(.trailing, 16)
-#if os(iOS)
             .glassEffect(.regular.tint(.spotifyBlack).interactive(), in: .rect(cornerRadius: 16))
-#endif
             .onTapGesture {
                 onPlayPressed?()
             }

@@ -91,7 +91,7 @@ actor APIHelper {
             throw APIError.invalidResponse
         }
         
-        return try decode(UserArray.self, data, printJSON: true)
+        return try decode(UserArray.self, data)
     }
     
     private func buildParams(_ params: [String: String]) -> QueryParams {

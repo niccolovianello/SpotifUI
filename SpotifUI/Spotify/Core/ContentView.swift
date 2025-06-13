@@ -9,9 +9,15 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
+        
         TabView {
+            
             Tab("Home", systemImage: "house.fill") {
-                SpotifyHomeView()
+                ZStack {
+                    Color.spotifyBlack
+                        .ignoresSafeArea()
+                    SpotifyHomeView()
+                }
             }
             
             Tab("Search", systemImage: "magnifyingglass") {

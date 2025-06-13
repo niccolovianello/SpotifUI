@@ -11,20 +11,16 @@ import SwiftUI
 extension View {
     func themeColors(isSelected: Bool, shape: ButtonBorderShape = .capsule) -> some View {
         return self
-#if os(iOS)
             .glassEffect(.regular.tint(isSelected ? .spotifyGreen : .clear).interactive(), in: shape)
-#endif
             .foregroundStyle(isSelected ? .spotifyBlack : .spotifyWhite)
     }
     
-#if os(iOS)
     func wrapInGlassContainer(spacing: CGFloat? = nil) -> some View {
    
         return GlassEffectContainer(spacing: spacing) {
             self
         }
     }
-#endif
 }
 
 struct RoundedCornersShape: Shape {

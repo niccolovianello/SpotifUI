@@ -46,20 +46,14 @@ struct SpotifyHomeView: View {
     @State private var selectedCategory: CategoryType? = nil
     
     var body: some View {
-        ZStack {
-#if os(iOS)
-            Color.spotifyBlack
-                .ignoresSafeArea()
-#endif
+        VStack {
             
             ScrollView(.vertical) {
                 LazyVStack(spacing: 1, pinnedViews: [.sectionHeaders]) {
                     Section {
                         VStack(spacing: 16) {
                             RecentsSectionView(releases: $viewModel.releases)
-#if os(iOS)
                                 .wrapInGlassContainer()
-#endif
                                 .padding(.horizontal, 16)
                                 
                             if let release = viewModel.releases?.first {
@@ -90,9 +84,6 @@ struct SpotifyHomeView: View {
             try? await viewModel.getData()
         }
         .toolbarVisibility(.hidden, for: .navigationBar)
-#if os(visionOS)
-        .glassBackgroundEffect()
-#endif
     }
     
     private var header: some View {
@@ -117,9 +108,7 @@ struct SpotifyHomeView: View {
                     if let currentUser = viewModel.currentUser,
                        let imageUrl = currentUser.image {
                         ImageLoaderView(url: imageUrl)
-                        #if os(iOS)
                             .glassEffect(.regular)
-                        #endif
                             .clipShape(Circle())
                             .onTapGesture {
                                 
@@ -128,9 +117,7 @@ struct SpotifyHomeView: View {
                     }
                 }
             }
-#if os(iOS)
             .wrapInGlassContainer()
-#endif
         }
         .padding(.vertical)
         .padding(.leading)
@@ -163,9 +150,7 @@ struct SpotifyHomeView: View {
                 }
                 .padding(.horizontal, 16)
             }
-#if os(iOS)
             .wrapInGlassContainer()
-#endif
             .scrollIndicators(.hidden)
         }
     }
