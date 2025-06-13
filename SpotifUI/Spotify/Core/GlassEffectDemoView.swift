@@ -8,6 +8,7 @@
 
 import SwiftUI
 
+#if os(iOS)
 struct GlassEffectDemoView: View {
     @State private var iconCount: Int = 1
     @Namespace private var namespace
@@ -62,3 +63,4 @@ struct GlassEffectDemoView: View {
         }
     }
 }
+#endif
