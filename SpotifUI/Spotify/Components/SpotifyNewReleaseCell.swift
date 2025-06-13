@@ -24,6 +24,8 @@ struct SpotifyNewReleaseCell: View {
     var onAddedToPlaylistPressed: (() -> Void)? = nil
     var onPlayPressed: (() -> Void)? = nil
     
+    @State private var isAddedToPlaylist: Bool = false
+    
     var body: some View {
         VStack {
             sectionHeader
@@ -32,19 +34,20 @@ struct SpotifyNewReleaseCell: View {
             HStack {
                 ImageLoaderView(url: imageName)
                     .frame(width: 150, height: 150)
+                    .clipShape(RoundedCornersShape(corners: [.topLeft, .bottomLeft], radius: 16))
                 
                 VStack(alignment: .leading, spacing: 32) {
                     
                     sectionDetail
-                        
                     
                     sectionButtons
                     
                 }
             }
             .padding(.trailing, 16)
-            .themeColors(isSelected: false)
-            .cornerRadius(6)
+#if os(iOS)
+            .glassEffect(.regular.tint(.spotifyBlack).interactive(), in: .rect(cornerRadius: 16))
+#endif
             .onTapGesture {
                 onPlayPressed?()
             }
@@ -94,13 +97,13 @@ struct SpotifyNewReleaseCell: View {
     
     private var sectionButtons: some View {
         HStack(spacing: 0) {
-            Image(systemName: "plus.circle")
-                .foregroundStyle(.spotifyLightGray)
+            Image(systemName: isAddedToPlaylist ? "checkmark.circle.fill" : "plus.circle")
+                .foregroundStyle(isAddedToPlaylist ? .spotifyGreen : .spotifyLightGray)
                 .font(.title3)
-                .padding(4)
-                .background(.spotifyDarkGray)
-                .offset(x: -4)
                 .onTapGesture {
+                    
+                    isAddedToPlaylist.toggle()
+                    
                     onAddedToPlaylistPressed?()
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

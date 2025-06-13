@@ -17,6 +17,7 @@ struct SpotifyRecentsCell: View {
         HStack {
             ImageLoaderView(url: imageName)
                 .frame(width: 55, height: 55)
+                .clipShape(RoundedCornersShape(corners: [.topLeft, .bottomLeft], radius: 128))
             
             Text(title ?? "No title")
                 .font(.caption)
@@ -27,7 +28,6 @@ struct SpotifyRecentsCell: View {
         .padding(.trailing, 8)
         .frame(maxWidth: .infinity, alignment: .leading)
         .themeColors(isSelected: false)
-        .cornerRadius(6)
     }
 }
 
