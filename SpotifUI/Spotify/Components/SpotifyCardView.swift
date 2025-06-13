@@ -16,8 +16,11 @@ struct SpotifyCardView: View {
     
     var body: some View {
         VStack {
-            ImageLoaderView(url: imageName)
+            ImageLoaderView(url: imageName, cornerRadius: 16)
                 .frame(width: imageSize, height: imageSize)
+#if os(iOS)
+                .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 16))
+#endif
             
             Text(text ?? "_no_name")
                 .padding(4)

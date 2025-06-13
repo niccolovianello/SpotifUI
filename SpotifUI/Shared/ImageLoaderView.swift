@@ -12,33 +12,37 @@ struct ImageLoaderView: View {
     
     var url: String? = Constants.randomImageURL
     var resizingMode = ContentMode.fill
+    var cornerRadius: CGFloat = 0
 
     var body: some View {
         Rectangle()
             .opacity(0.0)
             .overlay {
                 if let url {
-                    WebImage(url: URL(string: url))
-                        .resizable()
-                        .indicator(.activity)
-                        .aspectRatio(contentMode: resizingMode)
-                        .allowsHitTesting(false)
-                        .background(Color.spotifyWhite)
+//                    WebImage(url: URL(string: url))
+//                        .resizable()
+//                        .indicator(.activity)
+//                        .aspectRatio(contentMode: resizingMode)
+//                        .allowsHitTesting(false)
+//                        .background(Color.spotifyWhite)
                     
-//                    AsyncImage(url: URL(string: url)) { phase in
-//                        switch phase {
-//                        case .empty:
-//                            EmptyView()
-//                        case .success(let image):
-//                            image
-//                                .resizable()
-//                                .aspectRatio(contentMode: resizingMode)
-//                        case .failure:
-//                            EmptyView()
-//                        @unknown default:
-//                            EmptyView()
-//                        }
-//                    }
+                    
+                    AsyncImage(url: URL(string: url)) { phase in
+                        switch phase {
+                        case .empty:
+                            EmptyView()
+                        case .success(let image):
+                            image
+                                .resizable()
+                                .aspectRatio(contentMode: resizingMode)
+                                .allowsHitTesting(false)
+                                .cornerRadius(cornerRadius)
+                        case .failure:
+                            EmptyView()
+                        @unknown default:
+                            EmptyView()
+                        }
+                    }
                 }
             }
             .clipped()
