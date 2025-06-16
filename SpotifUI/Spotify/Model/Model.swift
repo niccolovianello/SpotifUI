@@ -7,10 +7,6 @@
 
 import Foundation
 
-enum Category: String, CaseIterable {
-    case all, music, podcasts
-}
-
 struct ComplexCategory {
     var name: String
     var isSelected: Bool
