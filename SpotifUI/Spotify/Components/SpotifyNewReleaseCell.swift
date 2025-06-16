@@ -12,12 +12,12 @@ struct SpotifyNewReleaseCell: View {
     var imageName: String? = Constants.randomImageURL
     
     var headerTitle: String? = "New Release"
-    var headerDescription: String? = "Taylor Swift - Midnights"
+    var headerDescription: String? = "New release"
     var headerTitleColor: Color? = .spotifyLightGray
     var headerDescriptionColor: Color? = .spotifyWhite
     
-    var detailTitle: String? = "iPhone 16"
-    var detailDescription: String? = "Apple device that discovers Intelligence."
+    var detailTitle: String? = "Green Day"
+    var detailDescription: String? = "21st Century Breakdown"
     var detailTitleColor: Color? = .spotifyWhite
     var detailDescriptionColor: Color? = .spotifyLightGray
     

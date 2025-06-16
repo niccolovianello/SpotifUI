@@ -43,7 +43,7 @@ final class SpotifyHomeViewModel {
 struct SpotifyHomeView: View {
     
     @State private var viewModel = SpotifyHomeViewModel()
-    @State private var selectedCategory: CategoryType? = nil
+    @State private var selectedCategory: CategoryType = .all
     
     var body: some View {
         VStack {
@@ -51,19 +51,14 @@ struct SpotifyHomeView: View {
             ScrollView(.vertical) {
                 LazyVStack(spacing: 1, pinnedViews: [.sectionHeaders]) {
                     Section {
-                        VStack(spacing: 16) {
-                            RecentsSectionView(releases: $viewModel.releases)
-                                .wrapInGlassContainer()
-                                .padding(.horizontal, 16)
-                                
-                            if let release = viewModel.releases?.first {
-                                newReleaseSection(release: release)
-                                    .padding(.horizontal, 16)
-                            }
-                            
-                            if let releaseRows = viewModel.releaseRows {
-                                rows(rows: releaseRows)
-                            }
+                        
+                        switch selectedCategory {
+                        case .all:
+                            allSection
+                        case .music:
+                            musicSection
+                        case .podcasts:
+                            podcastsSection
                         }
                         
                     } header: {
@@ -78,7 +73,7 @@ struct SpotifyHomeView: View {
         }
         .ignoresSafeArea(edges: .bottom)
         .onAppear {
-            selectedCategory = CategoryType.allCases.first
+            selectedCategory = CategoryType.allCases.first ?? .all
         }
         .task {
             try? await viewModel.getData()
@@ -124,12 +119,41 @@ struct SpotifyHomeView: View {
         
     }
     
+    private var allSection: some View {
+        VStack(spacing: 16) {
+            RecentsSectionView(releases: $viewModel.releases)
+                .padding(.horizontal, 16)
+                .wrapInGlassContainer()
+                
+            
+            if let release = viewModel.releases?.first {
+                newReleaseSection(release: release)
+                    .padding(.horizontal, 16)
+            }
+            
+            if let releaseRows = viewModel.releaseRows {
+                rows(rows: releaseRows)
+            }
+        }
+    }
+    
+    private var musicSection: some View {
+        Text("Music")
+            .padding()
+            .foregroundStyle(.spotifyWhite)
+    }
+    
+    private var podcastsSection: some View {
+        Text("Podcasts")
+            .padding()
+            .foregroundStyle(.spotifyWhite)
+    }
+    
     private func newReleaseSection(release: Release) -> some View {
         SpotifyNewReleaseCell(
-            headerTitle: release.title,
-            headerDescription: release.label,
-            detailTitle: release.artist,
-            detailDescription: String(release.year)
+            headerTitle: release.artist,
+            detailTitle: release.title,
+            detailDescription: release.artist
         )
     }
     

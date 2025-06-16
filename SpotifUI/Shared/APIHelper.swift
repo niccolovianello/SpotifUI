@@ -81,6 +81,22 @@ actor APIHelper {
         return try decode(Release.self, data)
     }
     
+    func fetchResource(from release: Release?) async throws -> Resource {
+        
+        guard let release,
+              let url = release.resourceURL,
+              let finalUrl = URL(string: url) else {
+            throw URLError(.badURL)
+        }
+        
+        guard let data = try await makeRequest(finalUrl: finalUrl) else {
+            throw APIError.invalidResponse
+        }
+        
+        return try decode(Resource.self, data)
+        
+    }
+    
     func fetchUsers() async throws -> UserArray {
         
         guard let url = URL(string: Constants.usersURL) else {

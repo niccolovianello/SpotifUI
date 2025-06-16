@@ -35,6 +35,20 @@ struct Release: Codable, Identifiable {
         case resourceURL = "resource_url"
         case role, artist, year, thumb
     }
+    
+    static let mock = Release(
+        id: 1,
+        status: "Released",
+        type: "Album",
+        format: "Vinyl",
+        label: "Mock Label",
+        title: "Mock Title",
+        resourceURL: "https://api.discogs.com/releases/20209",
+        role: "Main",
+        artist: "Mock Artist",
+        year: 2020,
+        thumb: ""
+    )
 }
 
 struct ReleaseRow: Identifiable {
@@ -47,12 +61,12 @@ struct Resource: Codable {
     let id: Int
     let status: String
     let year: Int
-    let resourceURL, uri: String
+    let resourceURL, uri: String?
     let artists: [Artist]
     let artistsSort: String
     let dataQuality: String
     let formatQuantity: Int
-    let dateAdded, dateChanged: Date
+    let dateAdded, dateChanged: String
     let numForSale: Int
     let lowestPrice: Double
     let title, country, released, releasedFormatted: String
@@ -69,7 +83,7 @@ struct Artist: Codable {
     let name, anv, join, role: String
     let tracks: String
     let id: Int
-    let resourceURL: String
+    let resourceURL: String?
     let thumbnailURL: String?
     
     enum CodingKeys: String, CodingKey {

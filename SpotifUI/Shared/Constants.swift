@@ -15,4 +15,6 @@ struct Constants {
     static let scheme = "https"
     static let host = "api.discogs.com"
     static let path = "/artists/1/releases"
+    
+    //https://api.discogs.com/artists/1/releases
 }
