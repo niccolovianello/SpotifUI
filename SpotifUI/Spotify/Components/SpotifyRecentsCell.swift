@@ -13,6 +13,7 @@ struct SpotifyRecentsCell: View {
     var title: String? = "Randomish title"
     var isPlaying: Bool = false
     
+    var category: CategoryType = .music
     var body: some View {
         HStack {
             ImageLoaderView(url: imageName)
@@ -23,6 +24,10 @@ struct SpotifyRecentsCell: View {
                 .font(.caption)
                 .fontWeight(.semibold)
                 .lineLimit(2)
+            if isPlaying && category == .music {
+                AudioBarVisualizer(barCount: 3)
+                    .frame(width: 20, height: 20)
+            }
             
         }
         .padding(.trailing, 8)
@@ -39,7 +44,7 @@ struct SpotifyRecentsCell: View {
         VStack {
             HStack {
                 SpotifyRecentsCell(isPlaying: true)
-                SpotifyRecentsCell()
+                SpotifyRecentsCell(category: .podcasts)
             }
             HStack {
                 SpotifyRecentsCell()
