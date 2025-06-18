@@ -32,7 +32,7 @@ struct SpotifyNewReleaseCell: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             HStack {
-                ImageLoaderView(url: imageName)
+                ImageLoaderView(urlString: imageName)
                     .frame(width: 150, height: 150)
                     .clipShape(RoundedCornersShape(corners: [.topLeft, .bottomLeft], radius: 16))
                 

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ImageLoaderView: View {
     
-    var url: String? = Constants.randomImageURL
+    var urlString: String? = Constants.randomImageURL
     var resizingMode = ContentMode.fill
     var cornerRadius: CGFloat = 0
 
@@ -17,8 +17,8 @@ struct ImageLoaderView: View {
         Rectangle()
             .opacity(0.0)
             .overlay {
-                if let url {
-                    AsyncImage(url: URL(string: url)) { phase in
+                if let urlString {
+                    AsyncImage(url: URL(string: urlString)) { phase in
                         switch phase {
                         case .empty:
                             EmptyView()

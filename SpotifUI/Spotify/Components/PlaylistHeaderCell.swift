@@ -20,7 +20,7 @@ struct PlaylistHeaderCell: View {
         Rectangle()
             .opacity(0)
             .overlay {
-                ImageLoaderView(url: imageName)
+                ImageLoaderView(urlString: imageName)
             }
             .overlay(alignment: .bottomLeading) {
                 VStack(alignment: .leading, spacing: 8) {
