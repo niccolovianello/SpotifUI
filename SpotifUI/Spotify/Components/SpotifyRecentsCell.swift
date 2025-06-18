@@ -14,9 +14,10 @@ struct SpotifyRecentsCell: View {
     var isPlaying: Bool = false
     
     var category: CategoryType = .music
+    
     var body: some View {
         HStack {
-            ImageLoaderView(url: imageName)
+            ImageLoaderView(urlString: imageName)
                 .frame(width: 55, height: 55)
                 .clipShape(RoundedCornersShape(corners: [.topLeft, .bottomLeft], radius: 128))
             

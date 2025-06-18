@@ -104,7 +104,7 @@ struct SpotifyHomeView: View {
                     
                     if let currentUser = viewModel.currentUser,
                        let imageUrl = currentUser.image {
-                        ImageLoaderView(url: imageUrl)
+                        ImageLoaderView(urlString: imageUrl)
                             .glassEffect(.regular)
                             .clipShape(Circle())
                             .onTapGesture {
