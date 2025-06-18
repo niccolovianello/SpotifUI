@@ -11,41 +11,56 @@ import SwiftUI
 @Observable
 final class SpotifyPlaylistViewModel {
     
-    var releaseResource: Resource? = nil
+    var products: [Product] = []
     
     @ObservationIgnored private var apiHelper = APIHelper()
     
-    func getReleaseInfo(release: Release?) async {
-        releaseResource = try? await apiHelper.fetchResource(from: release)
+    func getPlaylistData() async {
+        if let products = try? await apiHelper.fetchProducts().products {
+            self.products = products
+        }
     }
 }
 
 struct SpotifyPlaylistView: View {
     
     @State private var viewModel = SpotifyPlaylistViewModel()
-    var release: Release? = nil
+    var product: Product = .mock
+    var user: User = .mock
     
     var body: some View {
-        VStack {
-            if let resource = viewModel.releaseResource {
-                ScrollView(.vertical) {
-                    LazyVStack(spacing: 12) {
-                        PlaylistHeaderCell(
-                            height: 250,
-                            title: resource.title,
-                            description: resource.artists.compactMap( \.name ).joined(separator: " & "),
-                            imageName: resource.thumb
+        ZStack {
+            ScrollView(.vertical) {
+                LazyVStack(spacing: 12) {
+                    
+                    
+                    PlaylistHeaderCell(
+                        height: 250,
+                        title: product.title,
+                        description: product.description,
+                        imageName: product.thumbnail
+                    )
+                    .readingFrame { frame in
+                        showHeader = frame.maxY < 150
+                    }
+                    
+                    PlaylistDescriptionCell(descriptionText: String(product.description), username: user.firstName, subHeadlineText: product.category)
+                        .padding(.horizontal)
+                    
+                    ForEach(viewModel.products, id: \.id) { product in
+                        SongRowCell(
+                            imageName: product.thumbnail,
+                            title: product.title,
+                            artist: product.brand ?? "Unknown"
                         )
-                        
-                        PlaylistDescriptionCell(descriptionText: String(resource.year))
-                            .padding(.horizontal)
+                        .padding(.leading)
                     }
                 }
             }
+            .scrollIndicators(.hidden)
         }
-        .scrollIndicators(.hidden)
         .task {
-            await viewModel.getReleaseInfo(release: release)
+            await viewModel.getPlaylistData()
         }
     }
 }
@@ -55,7 +70,7 @@ struct SpotifyPlaylistView: View {
         Color.spotifyBlack
             .ignoresSafeArea()
         
-        SpotifyPlaylistView(release: .mock)
+        SpotifyPlaylistView(product: .mock)
     }
 }
 
