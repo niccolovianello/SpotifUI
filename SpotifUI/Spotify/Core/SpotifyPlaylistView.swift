@@ -25,6 +25,8 @@ final class SpotifyPlaylistViewModel {
 struct SpotifyPlaylistView: View {
     
     @State private var viewModel = SpotifyPlaylistViewModel()
+    @State private var showHeader: Bool = true
+    
     var product: Product = .mock
     var user: User = .mock
     
@@ -58,9 +60,43 @@ struct SpotifyPlaylistView: View {
                 }
             }
             .scrollIndicators(.hidden)
+            
+            header
+                .padding(.horizontal)
+                .foregroundStyle(.spotifyWhite)
+                .frame(maxHeight: .infinity, alignment: .top)
+                .animation(.smooth(duration: 0.2), value: showHeader)
         }
         .task {
             await viewModel.getPlaylistData()
+        }
+        .toolbar(.hidden, for: .navigationBar)
+    }
+    
+    private var header: some View {
+        ZStack {
+            
+            Text(product.title)
+                .padding(.vertical, 20)
+                .frame(maxWidth: .infinity)
+                .opacity(showHeader ? 1 : 0)
+                .offset(y: showHeader ? 0 : -30)
+                .glassEffect(isEnabled: showHeader)
+            
+            HStack {
+                Image(systemName: "chevron.left")
+                    .font(.title3)
+                    .padding(10)
+                    .background(showHeader ? .black.opacity(0.001) : .spotifyGray.opacity(0.7))
+                    .clipShape(Circle())
+                    .padding(.leading)
+                    .offset(x: showHeader ? 0 : -10)
+                    .makeButton(.press) {
+                        
+                    }
+                
+                Spacer()
+            }
         }
     }
 }
