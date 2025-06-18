@@ -47,54 +47,17 @@ actor APIHelper {
         }
     }
     
-    func fetchPage(pageIndex: Int = 0, pageLimitCount: Int = 20) async throws -> ReleaseResult? {
+    func fetchProducts() async throws -> ProductArray {
         
-        let params = buildParams([
-            "per_page": "\(pageLimitCount)",
-            "page": "\(pageIndex)"
-        ])
-        
-        let finalUrl = URLBuilder().buildURL(with: params)
-        
-        guard let finalUrl else {
+        guard let url = URL(string: Constants.productsURL) else {
             throw URLError(.badURL)
         }
         
-        guard let data = try await makeRequest(finalUrl: finalUrl) else {
+        guard let data = try await makeRequest(finalUrl: url) else {
             throw APIError.invalidResponse
         }
         
-        return try decode(ReleaseResult.self, data)
-    }
-    
-    func fetchRelease(named name: String) async throws -> Release {
-        let finalUrl = URLBuilder().buildURL(appending: name)
-        
-        guard let finalUrl else {
-            throw URLError(.badURL)
-        }
-        
-        guard let data = try await makeRequest(finalUrl: finalUrl) else {
-            throw APIError.invalidResponse
-        }
-        
-        return try decode(Release.self, data)
-    }
-    
-    func fetchResource(from release: Release?) async throws -> Resource {
-        
-        guard let release,
-              let url = release.resourceURL,
-              let finalUrl = URL(string: url) else {
-            throw URLError(.badURL)
-        }
-        
-        guard let data = try await makeRequest(finalUrl: finalUrl) else {
-            throw APIError.invalidResponse
-        }
-        
-        return try decode(Resource.self, data)
-        
+        return try decode(ProductArray.self, data)
     }
     
     func fetchUsers() async throws -> UserArray {

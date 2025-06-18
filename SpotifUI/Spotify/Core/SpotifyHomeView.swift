@@ -14,24 +14,26 @@ final class SpotifyHomeViewModel {
     @ObservationIgnored private var apiHelper = APIHelper()
     
     var currentUser: User? = nil
-    var releases: [Release]? = nil
-    var releaseRows: [ReleaseRow]? = []
+    var products: [Product]? = []
+    var productRows: [ProductRow]? = []
     
     func getData() async throws {
         
         do {
             currentUser = try await apiHelper.fetchUsers().users?.first
-            let releaseResult = try await apiHelper.fetchPage()
-            if let releaseResult, let releases = releaseResult.releases {
-                self.releases = Array(releases.prefix(8))
+            let productArray = try await apiHelper.fetchProducts()
+            if let products = productArray.products {
+                self.products = Array(products.prefix(8))
                 
-                var rows: [ReleaseRow] = []
-                let allArtists = Set(releases.map( \.artist ))
-                for artist in allArtists {
-                    rows.append(ReleaseRow(title: artist, releases: releases))
+                var rows: [ProductRow] = []
+                let allBrands = Set(products.map( \.brand ))
+                for brand in allBrands {
+                    if let brand {
+                        rows.append(ProductRow(title: brand, products: products))
+                    }
                 }
                 
-                releaseRows = rows
+                productRows = rows
             }
             
         } catch {
@@ -121,18 +123,18 @@ struct SpotifyHomeView: View {
     
     private var allSection: some View {
         VStack(spacing: 16) {
-            RecentsSectionView(releases: $viewModel.releases)
+            RecentsSectionView(products: $viewModel.products)
                 .padding(.horizontal, 16)
                 .wrapInGlassContainer()
                 
             
-            if let release = viewModel.releases?.first {
-                newReleaseSection(release: release)
+            if let product = viewModel.products?.first {
+                newReleaseSection(product: product)
                     .padding(.horizontal, 16)
             }
             
-            if let releaseRows = viewModel.releaseRows {
-                rows(rows: releaseRows)
+            if let productRows = viewModel.productRows {
+                rows(rows: productRows)
             }
         }
     }
@@ -149,15 +151,15 @@ struct SpotifyHomeView: View {
             .foregroundStyle(.spotifyWhite)
     }
     
-    private func newReleaseSection(release: Release) -> some View {
+    private func newReleaseSection(product: Product) -> some View {
         SpotifyNewReleaseCell(
-            headerTitle: release.artist,
-            detailTitle: release.title,
-            detailDescription: release.artist
+            headerTitle: product.brand,
+            detailTitle: product.title,
+            detailDescription: product.description
         )
     }
     
-    private func rows(rows: [ReleaseRow]) -> some View {
+    private func rows(rows: [ProductRow]) -> some View {
         ForEach(rows) { row in
             Text(row.title)
                 .foregroundStyle(.spotifyWhite)
@@ -168,8 +170,8 @@ struct SpotifyHomeView: View {
             
             ScrollView(.horizontal) {
                 HStack(spacing: 16) {
-                    ForEach(row.releases) { release in
-                        SpotifyCardView(text: release.title, lineLimit: 1)
+                    ForEach(row.products) { product in
+                        SpotifyCardView(text: product.title, lineLimit: 1)
                     }
                 }
                 .padding(.horizontal, 16)
@@ -182,13 +184,13 @@ struct SpotifyHomeView: View {
 
 struct RecentsSectionView: View {
     
-    @Binding var releases: [Release]?
+    @Binding var products: [Product]?
     
     var body: some View {
-        if let releases {
-            NonLazyVGrid(columns: 2, alignment: .center, spacing: 8, items: releases) { release in
-                if let release {
-                    SpotifyRecentsCell(title: release.title)
+        if let products {
+            NonLazyVGrid(columns: 2, alignment: .center, spacing: 8, items: products) { product in
+                if let product {
+                    SpotifyRecentsCell(title: product.title, isPlaying: product.id == 1)
                 }
             }
         }
