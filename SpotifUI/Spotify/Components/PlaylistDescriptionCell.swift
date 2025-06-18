@@ -31,7 +31,6 @@ struct PlaylistDescriptionCell: View {
             Text(subHeadlineText)
             
             buttons
-                .wrapInGlassContainer()
             
         }
         .font(.callout)
@@ -59,28 +58,28 @@ struct PlaylistDescriptionCell: View {
                 Image(systemName: "plus.circle")
                     .padding(8)
                     .background(.spotifyBlack.opacity(0.001))
-                    .makeGlassButton {
+                    .makeButton {
                         onAddToPlaylistPressed?()
                     }
                 
                 Image(systemName: "arrow.down.circle")
                     .padding(8)
                     .background(.spotifyBlack.opacity(0.001))
-                    .makeGlassButton {
+                    .makeButton {
                         onDownloadPressed?()
                     }
                 
                 Image(systemName: "square.and.arrow.up")
                     .padding(8)
                     .background(.spotifyBlack.opacity(0.001))
-                    .makeGlassButton {
+                    .makeButton {
                         onSharePressed?()
                     }
                 
                 Image(systemName: "ellipsis")
                     .padding(8)
                     .background(.spotifyBlack.opacity(0.001))
-                    .makeGlassButton {
+                    .makeButton {
                         onAddToPlaylistPressed?()
                     }
             }
@@ -91,7 +90,7 @@ struct PlaylistDescriptionCell: View {
                 Image(systemName: "shuffle")
                     .padding(8)
                     .background(.spotifyBlack.opacity(0.001))
-                    .makeGlassButton {
+                    .makeButton {
                         onShufflePressed?()
                     }
                 
@@ -99,7 +98,7 @@ struct PlaylistDescriptionCell: View {
                     .padding(8)
                     .font(.system(size: 46))
                     .background(.spotifyBlack.opacity(0.001))
-                    .makeGlassButton {
+                    .makeButton {
                         onPlayPressed?()
                     }
             }
