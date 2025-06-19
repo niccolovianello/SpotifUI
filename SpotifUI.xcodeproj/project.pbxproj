@@ -6,10 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		C36D90492DE750DB00A99592 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C36D90482DE750DB00A99592 /* SDWebImageSwiftUI */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		C3804F302DE74A4C00EFEA63 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -56,7 +52,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C36D90492DE750DB00A99592 /* SDWebImageSwiftUI in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,7 +112,6 @@
 			);
 			name = SpotifUI;
 			packageProductDependencies = (
-				C36D90482DE750DB00A99592 /* SDWebImageSwiftUI */,
 			);
 			productName = SwiftUIBoost;
 			productReference = C3804F222DE74A4B00EFEA63 /* SpotifUI.app */;
@@ -202,7 +196,6 @@
 			mainGroup = C3804F192DE74A4B00EFEA63;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				C36D90472DE750DB00A99592 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C3804F232DE74A4B00EFEA63 /* Products */;
@@ -583,25 +576,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		C36D90472DE750DB00A99592 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.3;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		C36D90482DE750DB00A99592 /* SDWebImageSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C36D90472DE750DB00A99592 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
-			productName = SDWebImageSwiftUI;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C3804F1A2DE74A4B00EFEA63 /* Project object */;
 }
