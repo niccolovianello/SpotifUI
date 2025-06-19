@@ -26,6 +26,7 @@ struct PlaylistHeaderCell: View {
                 VStack(alignment: .leading, spacing: 8) {
                     Text(description)
                         .font(.headline)
+                        .lineLimit(2)
                     Text(title)
                         .font(.largeTitle)
                         .bold()
