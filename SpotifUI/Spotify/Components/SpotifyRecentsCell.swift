@@ -20,10 +20,20 @@ struct SpotifyRecentsCell: View {
                 .frame(width: 55, height: 55)
                 .clipShape(RoundedCornersShape(corners: [.topLeft, .bottomLeft], radius: 128))
             
-            Text(title ?? "No title")
-                .font(.caption)
-                .fontWeight(.semibold)
-                .lineLimit(2)
+            ZStack {
+                Text(title)
+                    .font(.caption)
+                    .fontWeight(.semibold)
+                    .lineLimit(2)
+                    .frame(maxWidth: .infinity, alignment: .leading)
+                    .multilineTextAlignment(.leading)
+                
+                if !hasAudioBars {
+                    CompletionBarView(completionPercentage: 0.5, barheight: 4, trailingPadding: 16, bottomPadding: 4)
+                        .frame(maxHeight: .infinity, alignment: .bottom)
+                }
+            }
+            .frame(height: 55)
             
             if isPlaying && hasAudioBars {
                 AudioBarVisualizer(barCount: 3)
