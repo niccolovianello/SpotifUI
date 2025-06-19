@@ -6,13 +6,6 @@
 	objectVersion = 77;
 	objects = {
 
-/* Begin PBXBuildFile section */
-		C36D90492DE750DB00A99592 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = C36D90482DE750DB00A99592 /* SDWebImageSwiftUI */; };
-		C36D90782DE7653A00A99592 /* SwiftfulRouting in Frameworks */ = {isa = PBXBuildFile; productRef = C36D90772DE7653A00A99592 /* SwiftfulRouting */; };
-		C36D907B2DE7657600A99592 /* SwiftfulUI in Frameworks */ = {isa = PBXBuildFile; productRef = C36D907A2DE7657600A99592 /* SwiftfulUI */; };
-		C3FD49F62DE8B2FD00656DD4 /* PureSwiftUIDesign in Frameworks */ = {isa = PBXBuildFile; productRef = C3FD49F52DE8B2FD00656DD4 /* PureSwiftUIDesign */; };
-/* End PBXBuildFile section */
-
 /* Begin PBXContainerItemProxy section */
 		C3804F302DE74A4C00EFEA63 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -59,10 +52,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C36D907B2DE7657600A99592 /* SwiftfulUI in Frameworks */,
-				C36D90492DE750DB00A99592 /* SDWebImageSwiftUI in Frameworks */,
-				C3FD49F62DE8B2FD00656DD4 /* PureSwiftUIDesign in Frameworks */,
-				C36D90782DE7653A00A99592 /* SwiftfulRouting in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,10 +112,6 @@
 			);
 			name = SpotifUI;
 			packageProductDependencies = (
-				C36D90482DE750DB00A99592 /* SDWebImageSwiftUI */,
-				C36D90772DE7653A00A99592 /* SwiftfulRouting */,
-				C36D907A2DE7657600A99592 /* SwiftfulUI */,
-				C3FD49F52DE8B2FD00656DD4 /* PureSwiftUIDesign */,
 			);
 			productName = SwiftUIBoost;
 			productReference = C3804F222DE74A4B00EFEA63 /* SpotifUI.app */;
@@ -186,7 +171,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1630;
-				LastUpgradeCheck = 1630;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					C3804F212DE74A4B00EFEA63 = {
 						CreatedOnToolsVersion = 16.3;
@@ -211,10 +196,6 @@
 			mainGroup = C3804F192DE74A4B00EFEA63;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				C36D90472DE750DB00A99592 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */,
-				C36D90762DE7653A00A99592 /* XCRemoteSwiftPackageReference "SwiftfulRouting" */,
-				C36D90792DE7657600A99592 /* XCRemoteSwiftPackageReference "SwiftfulUI" */,
-				C3FD49F42DE8B2FD00656DD4 /* XCRemoteSwiftPackageReference "pure-swift-ui-design" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = C3804F232DE74A4B00EFEA63 /* Products */;
@@ -349,6 +330,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -406,6 +388,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -418,7 +401,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JGJBH5F73K;
+				DEVELOPMENT_TEAM = R6RY3B4JP3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -432,15 +415,16 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = nv.iosprojects.SwiftUIBoost;
+				PRODUCT_BUNDLE_IDENTIFIER = nv.iosprojects.SpotifUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,7";
+				TARGETED_DEVICE_FAMILY = 1;
+				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Debug;
 		};
@@ -451,7 +435,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = JGJBH5F73K;
+				DEVELOPMENT_TEAM = R6RY3B4JP3;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -465,15 +449,16 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = nv.iosprojects.SwiftUIBoost;
+				PRODUCT_BUNDLE_IDENTIFIER = nv.iosprojects.SpotifUI;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,7";
+				TARGETED_DEVICE_FAMILY = 1;
+				XROS_DEPLOYMENT_TARGET = 26.0;
 			};
 			name = Release;
 		};
@@ -591,64 +576,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		C36D90472DE750DB00A99592 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SDWebImage/SDWebImageSwiftUI.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 3.1.3;
-			};
-		};
-		C36D90762DE7653A00A99592 /* XCRemoteSwiftPackageReference "SwiftfulRouting" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulRouting.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 6.1.2;
-			};
-		};
-		C36D90792DE7657600A99592 /* XCRemoteSwiftPackageReference "SwiftfulUI" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SwiftfulThinking/SwiftfulUI.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.2.0;
-			};
-		};
-		C3FD49F42DE8B2FD00656DD4 /* XCRemoteSwiftPackageReference "pure-swift-ui-design" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/CodeSlicing/pure-swift-ui-design.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		C36D90482DE750DB00A99592 /* SDWebImageSwiftUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C36D90472DE750DB00A99592 /* XCRemoteSwiftPackageReference "SDWebImageSwiftUI" */;
-			productName = SDWebImageSwiftUI;
-		};
-		C36D90772DE7653A00A99592 /* SwiftfulRouting */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C36D90762DE7653A00A99592 /* XCRemoteSwiftPackageReference "SwiftfulRouting" */;
-			productName = SwiftfulRouting;
-		};
-		C36D907A2DE7657600A99592 /* SwiftfulUI */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C36D90792DE7657600A99592 /* XCRemoteSwiftPackageReference "SwiftfulUI" */;
-			productName = SwiftfulUI;
-		};
-		C3FD49F52DE8B2FD00656DD4 /* PureSwiftUIDesign */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = C3FD49F42DE8B2FD00656DD4 /* XCRemoteSwiftPackageReference "pure-swift-ui-design" */;
-			productName = PureSwiftUIDesign;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = C3804F1A2DE74A4B00EFEA63 /* Project object */;
 }

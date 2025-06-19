@@ -11,4 +11,10 @@ struct Constants {
     static let randomImageURL = "https://picsum.photos/600/600"
     static let productsURL = "https://dummyjson.com/products"
     static let usersURL = "https://dummyjson.com/users"
+    
+    static let scheme = "https"
+    static let host = "api.discogs.com"
+    static let path = "/artists/1/releases"
+    
+    //https://api.discogs.com/artists/1/releases
 }

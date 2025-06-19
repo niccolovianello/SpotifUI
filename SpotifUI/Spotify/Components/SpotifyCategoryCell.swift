@@ -12,23 +12,42 @@ struct SpotifyCategoryCell: View {
     
     var title: String = "Category"
     var isSelected: Bool = false
+    var expandOnSelect: Bool = false
+    var expandedText: String? = nil
+    
+    @State var isExpansionExpanded: Bool = false
+    @State var isExpansionSelected: Bool = false
     
     var body: some View {
-        Text(title)
-            .font(.callout)
-            .frame(minWidth: 35)
-            .padding(.vertical, 8)
-            .padding(.horizontal, 10)
-            .themeColors(isSelected: isSelected)
-            .cornerRadius(16)
-    }
-}
-
-extension View {
-    func themeColors(isSelected: Bool) -> some View {
-        return self
-            .background(isSelected ? .spotifyGreen : .spotifyDarkGray)
-            .foregroundStyle(isSelected ? .spotifyBlack : .spotifyWhite)
+        HStack(spacing: -8) {
+            Text(title)
+                .font(.callout)
+                .frame(minWidth: 35)
+                .padding(.vertical, 8)
+                .padding(.horizontal, 10)
+                .themeColors(isSelected: isSelected)
+                .onChange(of: isSelected) {
+                    isExpansionSelected = false
+                    withAnimation(.bouncy) {
+                        isExpansionExpanded.toggle()
+                    }
+                }
+            
+            
+            if expandOnSelect && isExpansionExpanded {
+                if let expandedText = expandedText {
+                    Text(expandedText)
+                        .font(.callout)
+                        .frame(minWidth: 35)
+                        .padding(.vertical, 8)
+                        .padding(.horizontal, 10)
+                        .themeColors(isSelected: isExpansionSelected)
+                        .onTapGesture {
+                            isExpansionSelected.toggle()
+                        }
+                }
+            }
+        }
     }
 }
 
@@ -38,9 +57,9 @@ extension View {
             .ignoresSafeArea()
         
         HStack {
-            SpotifyCategoryCell(isSelected: true)
-            SpotifyCategoryCell()
-            SpotifyCategoryCell()
+//            SpotifyCategoryCell()
+            SpotifyCategoryCell(isSelected: true, expandOnSelect: true, expandedText: "Expanded")
+//            SpotifyCategoryCell()
         }
     }
 }

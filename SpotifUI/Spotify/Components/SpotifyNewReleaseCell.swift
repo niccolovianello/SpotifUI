@@ -12,17 +12,19 @@ struct SpotifyNewReleaseCell: View {
     var imageName: String? = Constants.randomImageURL
     
     var headerTitle: String? = "New Release"
-    var headerDescription: String? = "Taylor Swift - Midnights"
+    var headerDescription: String? = "New release"
     var headerTitleColor: Color? = .spotifyLightGray
     var headerDescriptionColor: Color? = .spotifyWhite
     
-    var detailTitle: String? = "iPhone 16"
-    var detailDescription: String? = "Apple device that discovers Intelligence."
+    var detailTitle: String? = "Green Day"
+    var detailDescription: String? = "21st Century Breakdown"
     var detailTitleColor: Color? = .spotifyWhite
     var detailDescriptionColor: Color? = .spotifyLightGray
     
     var onAddedToPlaylistPressed: (() -> Void)? = nil
     var onPlayPressed: (() -> Void)? = nil
+    
+    @State private var isAddedToPlaylist: Bool = false
     
     var body: some View {
         VStack {
@@ -30,21 +32,20 @@ struct SpotifyNewReleaseCell: View {
                 .frame(maxWidth: .infinity, alignment: .leading)
             
             HStack {
-                ImageLoaderView(url: imageName)
+                ImageLoaderView(urlString: imageName)
                     .frame(width: 150, height: 150)
+                    .clipShape(RoundedCornersShape(corners: [.topLeft, .bottomLeft], radius: 16))
                 
                 VStack(alignment: .leading, spacing: 32) {
                     
                     sectionDetail
-                        
                     
                     sectionButtons
                     
                 }
             }
             .padding(.trailing, 16)
-            .themeColors(isSelected: false)
-            .cornerRadius(6)
+            .glassEffect(.regular.tint(.spotifyBlack).interactive(), in: .rect(cornerRadius: 16))
             .onTapGesture {
                 onPlayPressed?()
             }
@@ -94,13 +95,13 @@ struct SpotifyNewReleaseCell: View {
     
     private var sectionButtons: some View {
         HStack(spacing: 0) {
-            Image(systemName: "plus.circle")
-                .foregroundStyle(.spotifyLightGray)
+            Image(systemName: isAddedToPlaylist ? "checkmark.circle.fill" : "plus.circle")
+                .foregroundStyle(isAddedToPlaylist ? .spotifyGreen : .spotifyLightGray)
                 .font(.title3)
-                .padding(4)
-                .background(.spotifyDarkGray)
-                .offset(x: -4)
                 .onTapGesture {
+                    
+                    isAddedToPlaylist.toggle()
+                    
                     onAddedToPlaylistPressed?()
                 }
                 .frame(maxWidth: .infinity, alignment: .leading)

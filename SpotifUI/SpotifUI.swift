@@ -8,10 +8,10 @@
 import SwiftUI
 
 @main
-struct SwiftUIBoostApp: App {
+struct SpotifUI: App {
     var body: some Scene {
         WindowGroup {
-            SpotifyHomeView()
+            ContentView()
         }
     }
 }
