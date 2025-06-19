@@ -1,5 +1,25 @@
-A made-for-fun reimagination of Spotify's UI with the new LiquidGlass UI elements, recently introduced in iOS26.
+# SpotifUI 🎵
 
-![snap_1](https://github.com/user-attachments/assets/8c40968b-bdae-44d7-ac16-e337c26c6bf8)
-![snap_2](https://github.com/user-attachments/assets/938f6b9e-5b5a-4f35-a925-7338694220e4)
-![snap_3](https://github.com/user-attachments/assets/240c1339-0642-45b2-8f5f-566181bd9db8)
+**SpotifUI** is an iOS application built with SwiftUI that replicates the Spotify home interface and experience. This project serves as a UI showcase or learning tool, using clean architecture and mock data.
+
+## ✨ Features
+
+- Smooth navigation with `NavigationStack`
+- Custom reusable components
+- Liquid Glass elements such as top bar category selectors and TabView
+- Async data loading from DummyJSON's mocks
+
+## 🛠️ Tech Stack
+
+- **Swift 5+**
+- **SwiftUI**
+- **MVVM architecture**
+- **Xcode 15+**
+
+## 📸 Screenshots
+
+<p float="left">
+  <img src="screenshots/screen1.png" width="30%" />
+  <img src="screenshots/screen2.png" width="30%" />
+  <img src="screenshots/screen3.png" width="30%" />
+</p>
