@@ -9,8 +9,8 @@ import SwiftUI
 
 struct SpotifyRecentsCell: View {
     
-    var imageName: String? = Constants.randomImageURL
-    var title: String? = "Randomish title"
+    var imageName: String = Constants.randomImageURL
+    var title: String = "Randomish title"
     var isPlaying: Bool = false
     var hasAudioBars: Bool = true
     
