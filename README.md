@@ -19,7 +19,7 @@
 ## 📸 Screenshots
 
 <p float="left">
-  <img src="screenshots/screen1.png" width="30%" />
-  <img src="screenshots/screen2.png" width="30%" />
-  <img src="screenshots/screen3.png" width="30%" />
+  <img src="https://github.com/user-attachments/assets/0f8c34c2-c815-4166-add6-ec555ab52317" width="30%" />
+  <img src="https://github.com/user-attachments/assets/9621d1a4-4b20-4a93-9b6c-f10093a83657" width="30%" />
+  <img src="https://github.com/user-attachments/assets/a60f212b-98d3-4aab-ae0f-2351f7a2b860" width="30%" />
 </p>
