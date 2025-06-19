@@ -160,7 +160,7 @@ struct SpotifyHomeView: View {
     
     private func newReleaseSection(product: Product) -> some View {
         SpotifyNewReleaseCell(
-            headerTitle: product.brand,
+            headerDescription: product.brand,
             detailTitle: product.title,
             detailDescription: product.description
         )
