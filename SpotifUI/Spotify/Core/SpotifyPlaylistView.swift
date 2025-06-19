@@ -27,6 +27,8 @@ struct SpotifyPlaylistView: View {
     @State private var viewModel = SpotifyPlaylistViewModel()
     @State private var showHeader: Bool = true
     
+    @Environment(\.dismiss) private var dismiss
+    
     var product: Product = .mock
     var user: User = .mock
     
@@ -92,7 +94,7 @@ struct SpotifyPlaylistView: View {
                     .padding(.leading)
                     .offset(x: showHeader ? 0 : -10)
                     .makeButton(.press) {
-                        
+                        dismiss()
                     }
                 
                 Spacer()

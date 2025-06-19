@@ -48,32 +48,39 @@ struct SpotifyHomeView: View {
     @State private var selectedCategory: CategoryType = .all
     
     var body: some View {
-        VStack {
+        NavigationStack {
             
-            ScrollView(.vertical) {
-                LazyVStack(spacing: 1, pinnedViews: [.sectionHeaders]) {
-                    Section {
-                        
-                        switch selectedCategory {
-                        case .all:
-                            allSection
-                        case .music:
-                            musicSection
-                        case .podcasts:
-                            podcastsSection
+            ZStack {
+                Color.spotifyBlack.ignoresSafeArea()
+                
+                ScrollView(.vertical) {
+                    LazyVStack(spacing: 1, pinnedViews: [.sectionHeaders]) {
+                        Section {
+                            
+                            switch selectedCategory {
+                            case .all:
+                                allSection
+                            case .music:
+                                musicSection
+                            case .podcasts:
+                                podcastsSection
+                            }
+                            
+                        } header: {
+                            header
                         }
-                        
-                    } header: {
-                        header
                     }
+                    .padding(.top, 8)
                 }
-                .padding(.top, 8)
+                .scrollIndicators(.hidden)
+                .clipped()
+                .navigationDestination(for: Product.self) { product in
+                    SpotifyPlaylistView(product: product)
+                }
             }
-            .scrollIndicators(.hidden)
-            .clipped()
+            .ignoresSafeArea(edges: .bottom)
             
         }
-        .ignoresSafeArea(edges: .bottom)
         .onAppear {
             selectedCategory = CategoryType.allCases.first ?? .all
         }
@@ -190,7 +197,9 @@ struct RecentsSectionView: View {
         if let products {
             NonLazyVGrid(columns: 2, alignment: .center, spacing: 8, items: products) { product in
                 if let product {
-                    SpotifyRecentsCell(title: product.title, isPlaying: product.id == 1)
+                    NavigationLink(value: product) {
+                        SpotifyRecentsCell(title: product.title, isPlaying: product.id == 1, hasAudioBars: product.id != 4)
+                    }
                 }
             }
         }

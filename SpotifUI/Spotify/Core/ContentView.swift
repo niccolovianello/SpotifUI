@@ -13,11 +13,7 @@ struct ContentView: View {
         TabView {
             
             Tab("Home", systemImage: "house.fill") {
-                ZStack {
-                    Color.spotifyBlack
-                        .ignoresSafeArea()
-                    SpotifyHomeView()
-                }
+                SpotifyHomeView()
             }
             
             Tab("Search", systemImage: "magnifyingglass") {
