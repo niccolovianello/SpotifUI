@@ -34,9 +34,11 @@ struct SpotifyPlaylistView: View {
     
     var body: some View {
         ZStack {
+            
+            Color.spotifyBlack.ignoresSafeArea()
+            
             ScrollView(.vertical) {
                 LazyVStack(spacing: 12) {
-                    
                     
                     PlaylistHeaderCell(
                         height: 250,
@@ -48,7 +50,7 @@ struct SpotifyPlaylistView: View {
                         showHeader = frame.maxY < 150
                     }
                     
-                    PlaylistDescriptionCell(descriptionText: String(product.description), username: user.firstName, subHeadlineText: product.category)
+                    PlaylistDescriptionCell(descriptionText: String(product.description), username: user.firstName, subHeadlineText: product.category.capitalized)
                         .padding(.horizontal)
                     
                     ForEach(viewModel.products, id: \.id) { product in
@@ -104,11 +106,6 @@ struct SpotifyPlaylistView: View {
 }
 
 #Preview {
-    ZStack {
-        Color.spotifyBlack
-            .ignoresSafeArea()
-        
-        SpotifyPlaylistView(product: .mock)
-    }
+    SpotifyPlaylistView(product: .mock)
 }
 
